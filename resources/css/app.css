@@ -176,3 +176,9 @@
 .blur-effect {
     filter: grayscale(100%) blur(3px);
 }
+/*
+.marquee-infinite .carousel-track {
+    align-items: center;
+    gap: 10px !important;
+}
+ */
