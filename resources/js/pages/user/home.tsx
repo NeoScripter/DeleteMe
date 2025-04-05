@@ -1,4 +1,5 @@
 import Chart from '@/components/user/orgamisms/chart';
+import Choice from '@/components/user/orgamisms/choice';
 import Footprint from '@/components/user/orgamisms/footprint';
 import Hero from '@/components/user/orgamisms/hero';
 import Perks from '@/components/user/orgamisms/perks';
@@ -25,6 +26,8 @@ export default function Home() {
 
                     <Footprint />
                 </div>
+
+                <Choice />
             </main>
         </UserLayout>
     );
