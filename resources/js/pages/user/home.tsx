@@ -1,3 +1,4 @@
+import Chart from '@/components/user/orgamisms/chart';
 import Hero from '@/components/user/orgamisms/hero';
 import Perks from '@/components/user/orgamisms/perks';
 import Reviews from '@/components/user/orgamisms/reviews';
@@ -18,6 +19,8 @@ export default function Home() {
                     <Reviews />
 
                     <Stats />
+
+                    <Chart />
                 </div>
             </main>
         </UserLayout>
