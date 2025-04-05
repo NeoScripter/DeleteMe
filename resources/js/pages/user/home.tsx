@@ -1,3 +1,5 @@
+import Accordion from '@/components/user/orgamisms/accordion';
+import Brokers from '@/components/user/orgamisms/brokers';
 import Chart from '@/components/user/orgamisms/chart';
 import Choice from '@/components/user/orgamisms/choice';
 import Footprint from '@/components/user/orgamisms/footprint';
@@ -28,6 +30,10 @@ export default function Home() {
                 </div>
 
                 <Choice />
+
+                <Brokers />
+
+                <Accordion />
             </main>
         </UserLayout>
     );

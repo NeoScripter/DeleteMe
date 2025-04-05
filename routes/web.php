@@ -5,16 +5,12 @@ use App\Http\Controllers\Admin\CMSController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/posts', function () {
-    return Inertia::render('user/posts');
-})->name('posts');
-
 Route::get('/', function () {
     return Inertia::render('user/home');
 })->name('home');
 
 
-Route::middleware(['role:admin', 'auth'])->group(function () {
+/* Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('admin', function () {
         return Inertia::render('admin/dashboard');
     })->name('admin.dashboard');
@@ -31,6 +27,6 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::delete('/images/image', [CMSController::class, 'destroyGalleryImage'])->name('admin.images.destroy');
     Route::post('/images/reorder', [CMSController::class, 'reorderGalleryImages'])->name('admin.images.reorder');
 });
-
+ */
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
