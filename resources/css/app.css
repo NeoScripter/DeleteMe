@@ -65,6 +65,8 @@
     --color-primary-text: var(--primary-text);
     --color-primary-bg: var(--primary-background);
     --color-icon-violet: var(--icon-violet);
+
+    --shadow-choice-item: 0px 4px 108px 0px rgba(0, 0, 0, 0.15);
 }
 
 /*
