@@ -5,7 +5,7 @@ import PrimaryBtn from '../atoms/primary-btn';
 
 export default function Chart() {
     return (
-        <section className="flex flex-col items-center gap-11 sm:flex-row sm:items-start sm:gap-8 sm:px-4 xl:px-0 xl:gap-19 xl:items-center">
+        <section className="flex flex-col items-center gap-11 sm:flex-row sm:items-start sm:gap-8 sm:px-4 xl:px-0 xl:gap-19 xl:items-center mb-11 sm:mb-15.5 xl:mb-0">
             <div className='sm:hidden xl:block xl:w-135.75 xl:shrink-0'>
                 <img src={ChartImg} alt="Различные изображения графиков удаления данных" />
             </div>
