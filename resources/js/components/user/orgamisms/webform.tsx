@@ -39,7 +39,7 @@ export default function Webform() {
                         placeholder="Email"
                     />
 
-                    <Button type="button" onClick={notify} className="bg-primary-btn-bg text-white transiton-colors hover:bg-icon-violet block cursor-pointer rounded-full px-5 py-3 duration-200 ease-in ml-auto">Оформить подписку</Button>
+                    <Button type="submit" className="bg-primary-btn-bg text-white transiton-colors hover:bg-icon-violet block cursor-pointer rounded-full px-5 py-3 duration-200 ease-in ml-auto">Оформить подписку</Button>
                 </form>
             </div>
 
