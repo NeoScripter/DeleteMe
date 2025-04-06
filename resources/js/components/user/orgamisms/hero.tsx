@@ -33,7 +33,7 @@ export default function Hero() {
             </div>
 
             <div className="border-t border-white/50 pt-7">
-                <p className="text-center font-bold text-balance xl:text-xl">DeleteMe - сервис №1 в России по удалению персональных данных</p>
+                <p className="text-center font-bold text-balance xl:text-xl">DeleteMe - ведущий сервис удаления персональных данных в РФ</p>
             </div>
         </section>
     );

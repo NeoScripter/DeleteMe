@@ -17,7 +17,7 @@ class EmailController extends Controller
         ]);
 
 
-        $recipientEmail = 'sange0337@gmail.com';
+        $recipientEmail = 'is@maltsevip.ru';
 
         Mail::to($recipientEmail)->send(
             new MailRequest($validated['name'], $validated['phone'], $validated['email'])

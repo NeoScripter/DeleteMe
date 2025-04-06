@@ -21,7 +21,7 @@ export default function Webform() {
     }
 
     return (
-        <section className="flex flex-col gap-10 px-3 text-white sm:gap-10.5 sm:px-11 xl:flex-row xl:px-30 max-w-172 mx-auto xl:max-w-full">
+        <section id='form' className="flex flex-col gap-10 px-3 text-white sm:gap-10.5 sm:px-11 xl:flex-row xl:px-30 max-w-172 mx-auto xl:max-w-full">
             <div className="bg-primary-bg space-y-6 rounded-4xl px-6 py-9 sm:px-16 xl:px-12">
                 <p className="text-xl font-bold">Оставьте свои контактные данные и наш менеджер свяжется с вами</p>
 
