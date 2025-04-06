@@ -1,36 +1,38 @@
+import Marquee1 from '@/assets/images/marquee/marquee-1.webp';
+import Marquee2 from '@/assets/images/marquee/marquee-2.webp';
+import Marquee3 from '@/assets/images/marquee/marquee-3.webp';
+import Marquee4 from '@/assets/images/marquee/marquee-4.webp';
+import Marquee5 from '@/assets/images/marquee/marquee-5.webp';
+import Marquee6 from '@/assets/images/marquee/marquee-6.webp';
+
 export const cardDetails = [
     {
-        imgUrl: 'https://picsum.photos/id/237/200/300',
+        imgUrl: Marquee1,
         title: 'Text 1',
     },
 
     {
-        imgUrl: 'https://picsum.photos/id/238/200/300',
+        imgUrl: Marquee2,
         title: 'Text 2',
     },
 
     {
-        imgUrl: 'https://picsum.photos/id/239/200/300',
+        imgUrl: Marquee3,
         title: 'Text 3',
     },
 
     {
-        imgUrl: 'https://picsum.photos/id/240/200/300',
+        imgUrl: Marquee4,
         title: 'Text 4',
     },
 
     {
-        imgUrl: 'https://picsum.photos/id/241/200/300',
+        imgUrl: Marquee5,
         title: 'Text 5',
     },
 
     {
-        imgUrl: 'https://picsum.photos/id/42/200/300',
+        imgUrl: Marquee6,
         title: 'Text 6',
-    },
-
-    {
-        imgUrl: 'https://picsum.photos/id/243/200/300',
-        title: 'Text 7',
     },
 ];

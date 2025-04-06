@@ -4,6 +4,7 @@ import Chart from '@/components/user/orgamisms/chart';
 import Choice from '@/components/user/orgamisms/choice';
 import Footprint from '@/components/user/orgamisms/footprint';
 import Hero from '@/components/user/orgamisms/hero';
+import Marquee from '@/components/user/orgamisms/marquee';
 import Perks from '@/components/user/orgamisms/perks';
 import Popup from '@/components/user/orgamisms/popup';
 import Pricing from '@/components/user/orgamisms/pricing';
@@ -20,7 +21,7 @@ export default function Home() {
                 <main>
                     <Hero />
 
-                    {/* <Marquee /> */}
+                    <Marquee />
 
                     <Perks />
 
