@@ -1,1 +1,0 @@
-import{j as s}from"./app-ZfUTiXf8.js";import{U as t}from"./user-layout-B8VSM_y2.js";function e(){return s.jsx(t,{title:"Posts",children:s.jsx("main",{children:"This is the posts page"})})}export{e as default};

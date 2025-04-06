@@ -2,6 +2,7 @@ import { Button } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { CircleCheck } from 'lucide-react';
 import TextField from '../molecules/text-field';
+import { toast } from 'react-toastify';
 
 export default function Webform() {
     const { data, setData, post, errors } = useForm({
@@ -10,9 +11,13 @@ export default function Webform() {
         email: '',
     });
 
+    const notify = () => toast("Ваше сообщение успешно отправлено!");
+
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        post(route('mail'), { preserveScroll: true });
+        post(route('mail'), { preserveScroll: true, onSuccess: () => {
+            notify();
+        }, });
     }
 
     return (
@@ -34,7 +39,7 @@ export default function Webform() {
                         placeholder="Email"
                     />
 
-                    <Button type="submit" className="bg-primary-btn-bg text-white transiton-colors hover:bg-icon-violet block cursor-pointer rounded-full px-5 py-3 duration-200 ease-in ml-auto">Оформить подписку</Button>
+                    <Button type="button" onClick={notify} className="bg-primary-btn-bg text-white transiton-colors hover:bg-icon-violet block cursor-pointer rounded-full px-5 py-3 duration-200 ease-in ml-auto">Оформить подписку</Button>
                 </form>
             </div>
 
