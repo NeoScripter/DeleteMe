@@ -5,6 +5,7 @@ import Choice from '@/components/user/orgamisms/choice';
 import Footprint from '@/components/user/orgamisms/footprint';
 import Hero from '@/components/user/orgamisms/hero';
 import Perks from '@/components/user/orgamisms/perks';
+import Pricing from '@/components/user/orgamisms/pricing';
 import Reviews from '@/components/user/orgamisms/reviews';
 import Stats from '@/components/user/orgamisms/stats';
 import UserLayout from '@/layouts/user-layout';
@@ -32,6 +33,8 @@ export default function Home() {
                 <Choice />
 
                 <Brokers />
+
+                <Pricing />
 
                 <Accordion />
             </main>

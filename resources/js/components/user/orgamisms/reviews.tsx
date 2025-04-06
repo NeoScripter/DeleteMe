@@ -82,7 +82,7 @@ const reducer = (state: CarouselState, action: Action): CarouselState => {
 
 export default function Reviews() {
     return (
-        <section className="mb-10 sm:mb-25 xl:mb-20">
+        <section id='reviews' className="mb-10 sm:mb-25 xl:mb-20">
             <header className="mb-7 sm:mb-15 xl:mb-18 xl:flex xl:items-center xl:justify-between">
                 <h1 className="text-[2rem]">
                     Отзывы клиентов <br /> DeleteMe

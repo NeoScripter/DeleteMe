@@ -67,6 +67,7 @@
     --color-icon-violet: var(--icon-violet);
 
     --shadow-choice-item: 0px 4px 108px 0px rgba(0, 0, 0, 0.15);
+    --shadow-plan-card: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
 }
 
 /*
@@ -177,6 +178,10 @@
 
 .blur-effect {
     filter: grayscale(100%) blur(3px);
+}
+
+body, html {
+    scroll-behavior: smooth;
 }
 /*
 .marquee-infinite .carousel-track {

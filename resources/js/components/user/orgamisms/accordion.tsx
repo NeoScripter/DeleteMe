@@ -44,7 +44,7 @@ function AccordionItem({ title, description, onClick, isOpen }: AccordionItemPro
                     {title}
                 </p>
 
-                <div className={cn('overflow-clip transition-all duration-250 ease-in-out', isOpen ? 'max-h-screen pb-4 sm:pb-7.5' : 'max-h-0')}>
+                <div className={cn('overflow-clip transition-all duration-500 linear', isOpen ? 'max-h-screen pb-4 sm:pb-7.5' : 'max-h-0')}>
                     <div>{description}</div>
                 </div>
             </div>

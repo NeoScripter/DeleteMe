@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function Choice() {
     return (
-        <section className="text-primary-text px-6 pt-12.5 pb-18 sm:px-17 sm:pt-35.5 sm:pb-23.5 xl:px-32 xl:pt-0 xl:pb-22">
+        <section id='choice' className="text-primary-text px-6 pt-12.5 pb-18 sm:px-17 sm:pt-35.5 sm:pb-23.5 xl:px-32 xl:pt-0 xl:pb-22">
             <div className="relative mx-auto max-w-76.75 sm:max-w-164 xl:max-w-full">
                 <div className="bg-marquee-bg absolute -top-70 right-0 left-0 z-10 overflow-clip px-6 pt-8 text-center text-balance sm:-top-72 sm:px-10.5 sm:pt-12 xl:-top-50 xl:flex xl:items-center xl:gap-14 xl:pt-0 xl:pr-30 xl:text-left">
                     <div className="mb-4 xl:order-1">
