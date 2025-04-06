@@ -1,0 +1,1 @@
+import{j as s}from"./app-DF8ZnWxf.js";import{U as t}from"./user-layout-BUe-bfOf.js";import"./clsx-B-dksMZM.js";function e(){return s.jsx(t,{title:"Posts",children:s.jsx("main",{children:"This is the posts page"})})}export{e as default};
