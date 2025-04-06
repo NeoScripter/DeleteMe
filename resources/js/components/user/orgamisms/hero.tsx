@@ -24,7 +24,7 @@ export default function Hero() {
 
             <div className="mb-10 w-74 md:w-106">
                 <h1 className="mb-5 text-4xl font-bold text-balance md:mb-6 xl:text-5xl leading-tight">Ваши личные данные снова принадлежат вам </h1>
-                <p className="text-sm md:text-base">DeleteMe помогает быстро, легко и безопасно удалить ваши пресональные данные из интернета</p>
+                <p className="text-sm md:text-base">DeleteMe помогает быстро, легко и безопасно удалить ваши персональные данные из интернета</p>
             </div>
 
             <div className="mb-25 md:mb-17 xl:mb-18 md:flex md:items-center md:gap-6 xl:gap-4">

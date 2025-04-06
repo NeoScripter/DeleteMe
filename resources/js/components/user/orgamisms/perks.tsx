@@ -43,7 +43,7 @@ const cards: PerkCard[] = [
 export default function Perks() {
     return (
         <section id="perks" className="p-5.5 pb-9 sm:px-24 sm:py-18 sm:pb-19 xl:px-31 xl:pt-17 xl:pb-23 xl:flex xl:items-start xl:justify-between">
-            <div className="flex flex-col items-center gap-5 sm:gap-3 text-center mb-15 sm:mb-35 xl:mb-0 xl:items-start xl:text-left">
+            <div className="flex flex-col xl:sticky xl:top-20 items-center gap-5 sm:gap-3 text-center mb-15 sm:mb-35 xl:mb-0 xl:items-start xl:text-left">
                 <h2 className="text-[2rem] font-bold xl:w-90 xl:text-4xl">Как работает DeleteMe?</h2>
                 <p className="text-lg sm:mb-4 xl:w-90">Никаких лишних шагов — только плавный и понятный процесс.</p>
                 <PrimaryBtn className="flex items-center gap-2 xl:ml-auto">
