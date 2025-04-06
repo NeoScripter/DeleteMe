@@ -2,12 +2,15 @@
 
 use App\Helpers\CmsBlockHelper;
 use App\Http\Controllers\Admin\CMSController;
+use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('user/home');
 })->name('home');
+
+Route::post('/mail', [EmailController::class, 'sendEmail'])->name('mail');
 
 
 /* Route::middleware(['role:admin', 'auth'])->group(function () {

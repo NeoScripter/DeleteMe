@@ -8,6 +8,7 @@ import Perks from '@/components/user/orgamisms/perks';
 import Pricing from '@/components/user/orgamisms/pricing';
 import Reviews from '@/components/user/orgamisms/reviews';
 import Stats from '@/components/user/orgamisms/stats';
+import Webform from '@/components/user/orgamisms/webform';
 import UserLayout from '@/layouts/user-layout';
 
 export default function Home() {
@@ -35,6 +36,8 @@ export default function Home() {
                 <Brokers />
 
                 <Pricing />
+
+                <Webform />
 
                 <Accordion />
             </main>

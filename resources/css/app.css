@@ -68,6 +68,7 @@
 
     --shadow-choice-item: 0px 4px 108px 0px rgba(0, 0, 0, 0.15);
     --shadow-plan-card: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+    --shadow-input: 0 0 0 3px #0e121b, 0 0 0 4px #e0e4ea;
 }
 
 /*
