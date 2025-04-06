@@ -45,7 +45,7 @@ class Request extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.mail',
+            view: 'mail',
             with: ['name' => $this->name, 'phone' => $this->phone, 'email' => $this->email],
         );
     }
