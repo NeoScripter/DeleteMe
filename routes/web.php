@@ -13,7 +13,7 @@ Route::get('/', function () {
 Route::post('/mail', [EmailController::class, 'sendEmail'])->name('mail');
 
 
-/* Route::middleware(['role:admin', 'auth'])->group(function () {
+Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('admin', function () {
         return Inertia::render('admin/dashboard');
     })->name('admin.dashboard');
@@ -30,6 +30,6 @@ Route::post('/mail', [EmailController::class, 'sendEmail'])->name('mail');
     Route::delete('/images/image', [CMSController::class, 'destroyGalleryImage'])->name('admin.images.destroy');
     Route::post('/images/reorder', [CMSController::class, 'reorderGalleryImages'])->name('admin.images.reorder');
 });
- */
+
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';

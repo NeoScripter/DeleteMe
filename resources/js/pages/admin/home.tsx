@@ -13,7 +13,7 @@ import Groceries from '@/components/admin/pages/home/groceries';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Home',
+        title: 'Главная страница',
         href: '/home',
     },
 ];

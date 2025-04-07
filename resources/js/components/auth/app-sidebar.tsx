@@ -8,12 +8,12 @@ import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Панель управления',
         href: '/admin',
         icon: LayoutGrid,
     },
     {
-        title: 'Home',
+        title: 'Главная страница',
         href: '/admin/home',
         icon: HouseIcon,
     },
