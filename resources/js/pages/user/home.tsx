@@ -13,17 +13,22 @@ import Stats from '@/components/user/orgamisms/stats';
 import Webform from '@/components/user/orgamisms/webform';
 import UserLayout from '@/layouts/user-layout';
 import { PopupProvider } from '@/lib/providers/popup-provider';
+import { BlockType } from '@/lib/types/cmsBlock';
 
-export default function Home() {
+type HomeProps = {
+    blocks: BlockType;
+};
+
+export default function Home({ blocks }: HomeProps) {
     return (
         <UserLayout title="Home">
             <PopupProvider>
                 <main>
-                    <Hero />
+                    <Hero blocks={blocks} />
 
-                    <Marquee />
+                    <Marquee blocks={blocks} />
 
-                    <Perks />
+                    <Perks blocks={blocks} />
 
                     <div className="bg-primary-bg rounded-2xl px-5 pt-12 pb-63 text-white sm:pt-17 sm:pb-37 xl:px-29 xl:pb-71">
                         <Reviews />

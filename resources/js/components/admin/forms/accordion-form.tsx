@@ -4,7 +4,8 @@ import { formatDate } from '@/lib/utils/cn';
 import { VisitOptions } from 'node_modules/@inertiajs/core/types/types';
 import { FormEvent } from 'react';
 import { toast } from 'sonner';
-import Spinner from '../elements/spinner';
+import Spinner from '../elements/Spinner';
+
 
 type AccordionFormProps = {
     children: React.ReactNode;

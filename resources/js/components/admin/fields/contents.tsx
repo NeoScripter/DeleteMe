@@ -2,8 +2,9 @@ import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Textarea } from '@/components/ui/textarea';
 import clsx from 'clsx';
-import { ChevronsUpDown, ListPlus, ListX } from 'lucide-react';
+import { ChevronsUpDown, ListX } from 'lucide-react';
 import { useId } from 'react';
+import AddItemBtn from '../elements/add-item-btn';
 
 type ContentsFieldProps = {
     label: string;
@@ -36,10 +37,10 @@ export default function ContentsField({ label, contents, onChange, errors }: Con
             <Collapsible className="space-y-2">
                 <CollapsibleTrigger className="flex w-full items-center justify-between space-x-4 px-4 cursor-pointer">
                     <h4 className="text-sm font-semibold">{label}</h4>
-                    <Button type="button" variant="ghost" size="sm" className='cursor-pointer'>
+                    <div className='cursor-pointer my-3'>
                         <ChevronsUpDown className="h-4 w-4" />
                         <span className="sr-only">Toggle</span>
-                    </Button>
+                    </div>
                 </CollapsibleTrigger>
 
                 <CollapsibleContent className="space-y-2 pb-2">
@@ -70,10 +71,7 @@ export default function ContentsField({ label, contents, onChange, errors }: Con
                         );
                     })}
 
-                    <Button onClick={addText} type="button" variant="outline" className="ml-auto flex items-center gap-2 cursor-pointer">
-                        Добавить пункт
-                        <ListPlus />
-                    </Button>
+                    <AddItemBtn content='Добавить пункт' onClick={addText} />
                 </CollapsibleContent>
             </Collapsible>
         </div>

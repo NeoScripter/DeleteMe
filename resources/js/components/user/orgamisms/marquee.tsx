@@ -1,6 +1,8 @@
-import { cardDetails } from '@/lib/constants/cardDetails';
 import { BreakpointConfig, useCarousel } from '@/lib/hooks/use-carousel';
+import { BlockType } from '@/lib/types/cmsBlock';
 import { cn } from '@/lib/utils/cn';
+import { getAlt } from '@/lib/utils/get-alt';
+import { cbk } from '@/lib/utils/pick-block';
 import { useEffect } from 'react';
 
 const breakpoints: BreakpointConfig[] = [
@@ -9,7 +11,15 @@ const breakpoints: BreakpointConfig[] = [
     { screen: Infinity, values: { slide: 198, gap: 130 } },
 ];
 
-export default function Marquee() {
+type MarqueeProps = {
+    blocks: BlockType;
+};
+
+export default function Marquee({ blocks }: MarqueeProps) {
+
+    const images = cbk(blocks, 'marquee_images', 'images') ? blocks.marquee_images.images : [];
+    const alts = cbk(blocks, 'marquee_images', 'contents') ? blocks.marquee_images.contents : [];
+
     const {
         slides: carouselSlides,
         offsetPx,
@@ -19,7 +29,7 @@ export default function Marquee() {
         shouldAnimate,
         animationDuration,
     } = useCarousel({
-        slides: [...cardDetails, ...cardDetails],
+        slides: [...images, ...images],
         offset: 3,
         animationDuration: 1500,
         breakpoints: breakpoints,
@@ -44,8 +54,8 @@ export default function Marquee() {
                             transitionDuration: shouldAnimate ? `${animationDuration}ms` : '0ms',
                         }}
                     >
-                        {carouselSlides.map((card, index) => (
-                            <CarouselItem key={`${index}track`} imgUrl={card.imgUrl} imgTitle={card.imgTitle} />
+                        {carouselSlides.map((image, index) => (
+                            <CarouselItem key={`${image.id}marquee${index}`} imgUrl={`/storage/${image.path}`} imgText={getAlt(alts, index, carouselSlides)} />
                         ))}
                     </div>
                 </div>
@@ -56,13 +66,13 @@ export default function Marquee() {
 
 type CarouselItemProps = {
     imgUrl: string;
-    imgTitle: string;
+    imgText: string;
 };
 
-function CarouselItem({ imgUrl, imgTitle }: CarouselItemProps) {
+function CarouselItem({ imgUrl, imgText }: CarouselItemProps) {
     return (
         <div className="flex w-[108px] shrink-0 items-center justify-center sm:w-[143px] xl:w-[198px]">
-            <img src={imgUrl} alt={imgTitle} className="h-4/5 w-full object-contain object-center sm:h-3/5" />
+            <img src={imgUrl} alt={imgText} className="h-4/5 w-full object-contain object-center sm:h-3/5" />
         </div>
     );
 }

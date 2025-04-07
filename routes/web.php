@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('user/home');
+    return Inertia::render('user/home', [
+        'blocks' => CmsBlockHelper::getByPage('home'),
+    ]);
 })->name('home');
 
 Route::post('/mail', [EmailController::class, 'sendEmail'])->name('mail');
