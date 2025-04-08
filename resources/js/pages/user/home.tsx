@@ -46,9 +46,9 @@ export default function Home({ blocks }: HomeProps) {
 
                     <Pricing />
 
-                    <Webform />
+                    <Webform blocks={blocks} />
 
-                    <Accordion />
+                    <Accordion blocks={blocks} />
                 </main>
                 <Popup />
             </PopupProvider>

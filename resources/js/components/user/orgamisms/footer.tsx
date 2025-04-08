@@ -8,7 +8,7 @@ export default function Footer() {
     return (
         <footer className="bg-primary-bg px-3 pt-7.5 pb-12 text-white sm:px-10 sm:pb-5.5 xl:px-25 xl:pt-20 xl:pb-14 sm:flex sm:justify-between xl:block">
             <div className="mb-6 sm:mb-0 xl:flex xl:justify-between xl:items-center xl:mb-7">
-                <div className="mb-5 text-xl font-bold xl:text-4xl xl:mb-0">DeleteMe</div>
+                <div className="mb-5 text-xl font-bold xl:text-4xl xl:mb-0">Delete.name</div>
 
                 <div className="flex items-center gap-3.5">
                     <FooterSocial html={FacebookSvg} link="/" />

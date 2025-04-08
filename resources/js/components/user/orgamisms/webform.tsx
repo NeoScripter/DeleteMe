@@ -1,25 +1,27 @@
+import { BlockType } from '@/lib/types/cmsBlock';
+import { cbk } from '@/lib/utils/pick-block';
 import { CircleCheck } from 'lucide-react';
 import RequestForm from '../molecules/request-form';
 
-export default function Webform() {
+type WebformProps = {
+    blocks: BlockType;
+};
 
+export default function Webform({ blocks }: WebformProps) {
     return (
-        <section id='form' className="flex flex-col gap-10 px-3 text-white sm:gap-10.5 sm:px-11 xl:flex-row xl:px-30 max-w-172 mx-auto xl:max-w-full">
+        <section id="form" className="mx-auto flex max-w-172 flex-col gap-10 px-3 text-white sm:gap-10.5 sm:px-11 xl:max-w-full xl:flex-row xl:px-30">
             <div className="bg-primary-bg space-y-6 rounded-4xl px-6 py-9 sm:px-16 xl:px-12">
                 <p className="text-xl font-bold">Оставьте свои контактные данные и наш менеджер свяжется с вами</p>
 
-                 <RequestForm />
+                <RequestForm />
             </div>
 
             <div className="bg-primary-bg space-y-6 rounded-4xl px-8 py-10 sm:px-11">
-                <p className="text-3xl font-bold">Все тарифные планы включают</p>
+                {cbk(blocks, 'pricing', 'text') && <p className="text-3xl font-bold">{blocks.pricing.text}</p>}
 
                 <ul className="space-y-6">
-                    <ListItem content="В среднем 15 запросов Google удаляются в течение нескольких дней" />
-                    <ListItem content="Ежеквартальные отчеты о конфиденциальности" />
-                    <ListItem content="Личный эксперт DeleteMe" />
-                    <ListItem content="Бесплатно: новые варианты отказа от отслеживания добавляются в течение года без дополнительной оплаты" />
-                    <ListItem content="100% Гарантия результата" />
+                    {cbk(blocks, 'pricing', 'contents') &&
+                        blocks?.pricing?.contents?.map((item, index) => <ListItem key={`plan-item-${index}`} content={item} />)}
                 </ul>
             </div>
         </section>

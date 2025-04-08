@@ -1,28 +1,32 @@
+import { useBlockRange } from '@/lib/hooks/use-block-range';
+import { BlockType, CmsBlock } from '@/lib/types/cmsBlock';
 import { cn } from '@/lib/utils/cn';
+import { cbk, pbk } from '@/lib/utils/pick-block';
+import { range } from '@/lib/utils/range';
 import { Button } from '@headlessui/react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
-export default function Accordion() {
+type AccordionProps = {
+    blocks: BlockType;
+};
+
+export default function Accordion({ blocks }: AccordionProps) {
     const [openItemIndex, setOpenItemIndex] = useState<number | null>(null);
+    const { value: itemCount } = useBlockRange('accordion_item', blocks);
 
     function handleClick(idx: number) {
         setOpenItemIndex((prev) => (prev == idx ? null : idx));
     }
     return (
         <section className="px-5 pt-14.5 pb-12 sm:px-15 sm:pt-16 sm:pb-15 xl:px-61.5 xl:pt-23">
-            <h3 className="mb-10 text-[2rem] font-bold sm:mb-12 sm:text-[2.5rem]">Популярные вопросы</h3>
+            {cbk(blocks, 'accordion_title', 'text') && (
+                <h3 className="mb-10 text-[2rem] font-bold sm:mb-12 sm:text-[2.5rem]">{blocks.accordion_title.text}</h3>
+            )}
 
             <ul className="grid">
-                {accordionItems.map((item, index) => (
-                    <AccordionItem
-                        key={item.id}
-                        title={item.title}
-                        description={item.description}
-                        onClick={() => handleClick(index)}
-                        isOpen={index === openItemIndex}
-                    />
+                {range(1, itemCount).map((digit) => (
+                    <AccordionItem key={`accordion_item-${digit}`} block={pbk(blocks, `accordion_item${digit}`)} onClick={() => handleClick(digit - 1)}  isOpen={digit - 1 === openItemIndex} />
                 ))}
             </ul>
         </section>
@@ -30,13 +34,15 @@ export default function Accordion() {
 }
 
 type AccordionItemProps = {
-    title: string;
-    description: string;
+    block: CmsBlock;
     onClick: () => void;
     isOpen: boolean;
 };
 
-function AccordionItem({ title, description, onClick, isOpen }: AccordionItemProps) {
+function AccordionItem({ block, onClick, isOpen }: AccordionItemProps) {
+    const title = block?.text ?? '';
+    const description = block?.content ?? '';
+
     return (
         <li className={cn('border-primary-text mb-4 flex items-start border-b sm:mb-7.5')}>
             <div className="basis-4/5">
@@ -44,7 +50,7 @@ function AccordionItem({ title, description, onClick, isOpen }: AccordionItemPro
                     {title}
                 </p>
 
-                <div className={cn('overflow-clip transition-all duration-500 linear', isOpen ? 'max-h-screen pb-4 sm:pb-7.5' : 'max-h-0')}>
+                <div className={cn('linear overflow-clip transition-all duration-500', isOpen ? 'max-h-screen pb-4 sm:pb-7.5' : 'max-h-0')}>
                     <div>{description}</div>
                 </div>
             </div>
@@ -57,36 +63,3 @@ function AccordionItem({ title, description, onClick, isOpen }: AccordionItemPro
         </li>
     );
 }
-
-type AccordionItemType = {
-    id: string;
-    title: string;
-    description: string;
-};
-
-const accordionItems: AccordionItemType[] = [
-    {
-        id: uuidv4(),
-        title: 'Что такое брокер базы данных?',
-        description:
-            'Брокеры данных — это компании, которые собирают огромное количество персонально идентифицируемой информации (PII) и объединяют её в так называемые «профили» или «записи» с вашими личными данными. Эти профили могут содержать такие сведения, как номер социального страхования, дата рождения, предыдущие и текущие адреса проживания и многое другое.',
-    },
-    {
-        id: uuidv4(),
-        title: 'Как найти утечку данных?',
-        description:
-            'Брокеры данных сканируют интернет в поисках информации и используют её для создания вашего персонального профиля. Они получают эти данные из государственных и других публичных реестров, информации, которую вы указывали самостоятельно, социальных сетей и от других брокеров данных.',
-    },
-    {
-        id: uuidv4(),
-        title: 'Что будет после подписки?',
-        description:
-            'После того как вы завершите регистрацию в DeleteMe, мы отправим вам приветственное письмо, чтобы вы могли сразу начать работу. Вы войдёте в личный кабинет и окажетесь на своей персональной странице DeleteMe. Там вы укажете, какую именно информацию хотите удалить, и наши эксперты по конфиденциальности займутся этим.',
-    },
-    {
-        id: uuidv4(),
-        title: 'Можно ли удалить яндекс или гугл поиск обо мне?',
-        description:
-            'Мы не можем удалить результаты поиска Google напрямую, не удалив сначала исходную информацию с сайтов брокеров данных, откуда эти результаты берутся. Google не является источником этих данных — он просто отображает информацию из наиболее релевантных источников в ответ на ваш поисковый запрос, делая её более доступной. У Google нет файла с вашей личной информацией, и он не может его удалить.',
-    },
-];

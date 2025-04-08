@@ -1,12 +1,13 @@
 import AddItemBtn from '@/components/admin/elements/add-item-btn';
 import RemoveItemBtn from '@/components/admin/elements/remove-item-btn';
 import AccordionWrapper from '@/components/admin/forms/accordion-wrapper';
+import AccordionFaqItem from '@/components/admin/pages/home/accordion/accordion-item';
+import AccordionTitle from '@/components/admin/pages/home/accordion/accordion-title';
 import BrokersData from '@/components/admin/pages/home/brokers-data';
 import ChoiceSection from '@/components/admin/pages/home/choice/choice';
 import ChoiceCard from '@/components/admin/pages/home/choice/choice-card';
 import ChoiceTitle from '@/components/admin/pages/home/choice/choice-title';
 import FootPrint from '@/components/admin/pages/home/footprint';
-import Groceries from '@/components/admin/pages/home/groceries';
 import HeroBottom from '@/components/admin/pages/home/hero/hero-bottom';
 import HeroDektopImage from '@/components/admin/pages/home/hero/hero-desktop-img';
 import HeroMobileImage from '@/components/admin/pages/home/hero/hero-mobile-img';
@@ -16,6 +17,7 @@ import HeroTitle from '@/components/admin/pages/home/hero/hero-title';
 import Marquee from '@/components/admin/pages/home/marquee';
 import PerksCard from '@/components/admin/pages/home/perks/perks-card';
 import PerksTitle from '@/components/admin/pages/home/perks/perks-title';
+import PlanData from '@/components/admin/pages/home/plan-data';
 import ReviewCard from '@/components/admin/pages/home/reviews/review-card';
 import ReviewTitle from '@/components/admin/pages/home/reviews/review-title';
 import StatsCard from '@/components/admin/pages/home/stats/stats-card';
@@ -41,6 +43,7 @@ type PageProps = {
 
 export default function Home({ blocks }: PageProps) {
     const { value: reviewCount, increment: addReview, decrement: removeReview } = useBlockRange('review_card', blocks);
+    const { value: accordionCount, increment: addAccordionItem, decrement: removeAccordionItem } = useBlockRange('accordion_item', blocks);
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -92,9 +95,17 @@ export default function Home({ blocks }: PageProps) {
                             {range(1, reviewCount).map((digit) => (
                                 <div key={`review-card${digit}`} className="flex items-start gap-4">
                                     <div className="flex-1">
-                                        <ReviewCard label={`Отзыв ${digit}`} block={pbk(blocks, `review_card${digit}`)} slug={`review_card${digit}`} />
+                                        <ReviewCard
+                                            label={`Отзыв ${digit}`}
+                                            block={pbk(blocks, `review_card${digit}`)}
+                                            slug={`review_card${digit}`}
+                                        />
                                     </div>
-                                    <RemoveItemBtn onClick={removeReview} className="mt-4" data={{ page_slug: "home", block_slug: `review_card${digit}` }} />
+                                    <RemoveItemBtn
+                                        onClick={removeReview}
+                                        className="mt-4"
+                                        data={{ page_slug: 'home', block_slug: `review_card${digit}` }}
+                                    />
                                 </div>
                             ))}
                             <AddItemBtn className="mt-2 mb-4" content="Добавить отзыв" onClick={addReview} />
@@ -130,7 +141,11 @@ export default function Home({ blocks }: PageProps) {
                     <div>
                         <h2 className="p-2 text-lg font-bold">Почему мы?</h2>
                         <AccordionWrapper>
-                            <ChoiceSection label="Заголовок и подзаголовок справа от фото с поиском в Яндексе" block={pbk(blocks, 'choice')} slug="choice" />
+                            <ChoiceSection
+                                label="Заголовок и подзаголовок справа от фото с поиском в Яндексе"
+                                block={pbk(blocks, 'choice')}
+                                slug="choice"
+                            />
 
                             <ChoiceTitle label="Заголовок" block={pbk(blocks, 'choice_title')} slug="choice_title" />
 
@@ -155,9 +170,35 @@ export default function Home({ blocks }: PageProps) {
                 </div>
                 <div>
                     <div>
-                        <h2 className="p-2 text-lg font-bold">Список покупок</h2>
+                        <h2 className="p-2 text-lg font-bold">Перечисление тарифных планов</h2>
                         <AccordionWrapper>
-                            <Groceries label="Покупки" block={pbk(blocks, 'groceries')} slug="groceries" />
+                            <PlanData label="Тарифные планы" block={pbk(blocks, 'pricing')} slug="pricing" />
+                        </AccordionWrapper>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h2 className="p-2 text-lg font-bold">Популярные вопросы</h2>
+                        <AccordionWrapper>
+                            <AccordionTitle label="Заголовок" block={pbk(blocks, 'accordion_title')} slug="accordion_title" />
+
+                            {range(1, accordionCount).map((digit) => (
+                                <div key={`accordion-card${digit}`} className="flex items-start gap-4">
+                                    <div className="flex-1">
+                                        <AccordionFaqItem
+                                            label={`Пункт ${digit}`}
+                                            block={pbk(blocks, `accordion_item${digit}`)}
+                                            slug={`accordion_item${digit}`}
+                                        />
+                                    </div>
+                                    <RemoveItemBtn
+                                        onClick={removeAccordionItem}
+                                        className="mt-4"
+                                        data={{ page_slug: 'home', block_slug: `accordion_item${digit}` }}
+                                    />
+                                </div>
+                            ))}
+                            <AddItemBtn className="mt-2 mb-4" content="Добавить пункт" onClick={addAccordionItem} />
                         </AccordionWrapper>
                     </div>
                 </div>
