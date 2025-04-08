@@ -21,7 +21,7 @@ type FootprintProps = {
 };
 
 export default function Footprint({ blocks }: FootprintProps) {
-    const image = cbk(blocks, 'footprint', 'image') && blocks.footprint.image;
+    const image = cbk(blocks, 'footprint', 'image') && `/storage/${blocks.footprint.image}`;
 
     return (
         <section className="flex flex-col items-center gap-6 sm:gap-0 xl:flex-row xl:gap-0">
