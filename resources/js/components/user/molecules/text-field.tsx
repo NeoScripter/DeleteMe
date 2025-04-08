@@ -1,6 +1,7 @@
 import { Field, Input } from '@headlessui/react';
 import clsx from 'clsx';
 import ErrorField from './error-field';
+import { Asterisk } from 'lucide-react';
 
 type TextFieldProps = {
     setter: (key: string, value: string) => void;
@@ -10,11 +11,13 @@ type TextFieldProps = {
     error?: string;
     placeholder?: string;
     type?: string;
+    required?: boolean;
 };
 
-export default function TextField({ setter, fieldName, error, shouldFocus = false, placeholder = '', type = 'text', value }: TextFieldProps) {
+export default function TextField({ setter, fieldName, error, shouldFocus = false, placeholder = '', type = 'text', value, required = false }: TextFieldProps) {
     return (
-        <Field>
+        <Field className="relative">
+            {required && <Asterisk className='size-6 absolute right-2 top-1/2 -translate-y-1/2 text-red-500' />}
             <Input
                 onChange={(e) => setter(fieldName, e.target.value)}
                 name={fieldName}
@@ -26,6 +29,7 @@ export default function TextField({ setter, fieldName, error, shouldFocus = fals
                 )}
                 autoFocus={shouldFocus}
                 placeholder={placeholder}
+                required={required}
             />
             {error && <ErrorField>{error}</ErrorField>}
         </Field>

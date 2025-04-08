@@ -14,6 +14,7 @@ class EmailController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:30',
             'email' => 'required|email|max:255',
+            'consent' => 'accepted',
         ]);
 
 
