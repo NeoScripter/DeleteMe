@@ -4,6 +4,7 @@ import { useForm } from '@inertiajs/react';
 import { toast } from 'react-toastify';
 import TextField from '../molecules/text-field';
 import CheckboxField from './checkbox-field';
+import { reachGoal } from '@/lib/utils/reach-goal';
 
 export default function RequestForm() {
     const { data, setData, post, errors, processing } = useForm({
@@ -17,6 +18,9 @@ export default function RequestForm() {
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
+
+        reachGoal('Ostavit-zayavky');
+
         post(route('mail'), {
             preserveScroll: true,
             onSuccess: () => {
