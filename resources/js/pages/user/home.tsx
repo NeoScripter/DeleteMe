@@ -31,16 +31,16 @@ export default function Home({ blocks }: HomeProps) {
                     <Perks blocks={blocks} />
 
                     <div className="bg-primary-bg rounded-2xl px-5 pt-12 pb-63 text-white sm:pt-17 sm:pb-37 xl:px-29 xl:pb-71">
-                        <Reviews />
+                        <Reviews blocks={blocks} />
 
-                        <Stats />
+                        <Stats blocks={blocks} />
 
-                        <Chart />
+                        <Chart blocks={blocks}  />
 
-                        <Footprint />
+                        <Footprint blocks={blocks} />
                     </div>
 
-                    <Choice />
+                    <Choice blocks={blocks}  />
 
                     <Brokers />
 
