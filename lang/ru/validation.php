@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'accepted' => 'Поле :attribute должно быть принято.',
+    'accepted' => 'Данное поля обязательно для заполнения.',
     'accepted_if' => 'Поле :attribute должно быть принято, когда :other равно :value.',
     'active_url' => 'Поле :attribute должно быть действительным URL.',
     'after' => 'Поле :attribute должно быть датой после :date.',
