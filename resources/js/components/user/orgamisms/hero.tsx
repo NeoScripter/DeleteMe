@@ -20,7 +20,7 @@ export default function Hero({ blocks }: HeroProps) {
 
     return (
         <section
-            style={{ backgroundImage: `url(${isTablet ? (isDesktop ? desktopImage : tabletImage) : mobileImage})` }}
+            style={{ backgroundImage: `url(/storage/${isTablet ? (isDesktop ? desktopImage : tabletImage) : mobileImage})` }}
             className={cn('bg-cover bg-no-repeat px-8 pt-10 pb-8 text-white md:px-16 xl:px-30 xl:pt-13.25', isTablet ? 'bg-right' : 'bg-center')}
         >
             <header className="mb-26 text-xl font-bold md:mb-18 xl:mb-21 xl:flex xl:items-center xl:gap-8">
