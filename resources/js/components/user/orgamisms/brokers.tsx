@@ -1,5 +1,6 @@
 import { BlockType } from '@/lib/types/cmsBlock';
 import { cbk } from '@/lib/utils/pick-block';
+import { reachGoal } from '@/lib/utils/reach-goal';
 import { ArrowLongRightIcon } from '@heroicons/react/24/solid';
 import PrimaryBtn from '../atoms/primary-btn';
 
@@ -18,7 +19,7 @@ export default function Brokers({ blocks }: BrokersProps) {
                     {blocks.brokers.text}
                 </h3>
             )}
-            <PrimaryBtn className="mx-auto mb-9 flex items-center gap-2 sm:mb-12 xl:mb-17">
+            <PrimaryBtn onClick={() => reachGoal('Podkluchit-na-god')} className="mx-auto mb-9 flex items-center gap-2 sm:mb-12 xl:mb-17">
                 Подключить защиту на год
                 <ArrowLongRightIcon className="size-6" />
             </PrimaryBtn>

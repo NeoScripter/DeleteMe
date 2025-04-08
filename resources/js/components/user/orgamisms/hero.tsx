@@ -5,6 +5,7 @@ import SecondaryBtn from '../atoms/secondary-btn';
 import HeroNav from '../molecules/hero-nav';
 import { BlockType } from '@/lib/types/cmsBlock';
 import { cbk } from '@/lib/utils/pick-block';
+import { reachGoal } from '@/lib/utils/reach-goal';
 
 type HeroProps = {
     blocks: BlockType;
@@ -38,8 +39,8 @@ export default function Hero({ blocks }: HeroProps) {
             </div>
 
             <div className="mb-25 md:mb-17 xl:mb-18 md:flex md:items-center md:gap-6 xl:gap-4">
-                <PrimaryBtn className="mb-3 md:mb-0">Защитить себя</PrimaryBtn>
-                <SecondaryBtn>Защитить бизнес</SecondaryBtn>
+                <PrimaryBtn onClick={() => reachGoal('zashit-sebya')} className="mb-3 md:mb-0">Защитить себя</PrimaryBtn>
+                <SecondaryBtn onClick={() => reachGoal('zashit-biznes')}>Защитить бизнес</SecondaryBtn>
             </div>
 
             <div className="border-t border-white/50 pt-7">

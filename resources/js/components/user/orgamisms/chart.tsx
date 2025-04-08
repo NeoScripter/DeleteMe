@@ -3,6 +3,7 @@ import ChartImg from '@/assets/images/chart/chart.webp';
 import { BlockType } from '@/lib/types/cmsBlock';
 import { cbk } from '@/lib/utils/pick-block';
 import PrimaryBtn from '../atoms/primary-btn';
+import { reachGoal } from '@/lib/utils/reach-goal';
 
 type ChartProps = {
     blocks: BlockType;
@@ -26,7 +27,7 @@ export default function Chart({ blocks }: ChartProps) {
                     </p>
                 )}
                 {cbk(blocks, 'stats_title', 'content') && <p className="mb-6.5 md:mb-11 xl:mb-8">{blocks.stats_title.content}</p>}
-                <PrimaryBtn className="sm:mx-auto md:mx-0">Присоединиться прямо сейчас</PrimaryBtn>
+                <PrimaryBtn onClick={() => reachGoal('prisoedinitsa-seichas')} className="sm:mx-auto md:mx-0">Присоединиться прямо сейчас</PrimaryBtn>
             </div>
         </section>
     );
