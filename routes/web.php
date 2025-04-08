@@ -28,6 +28,7 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
 
 
     Route::post('/admin/update', [CMSController::class, 'update'])->name('admin.update');
+    Route::delete('/admin/block', [CMSController::class, 'destroy'])->name('admin.block.destroy');
     Route::delete('/image/image', [CMSController::class, 'destroyImage'])->name('admin.image.destroy');
     Route::delete('/images/image', [CMSController::class, 'destroyGalleryImage'])->name('admin.images.destroy');
     Route::post('/images/reorder', [CMSController::class, 'reorderGalleryImages'])->name('admin.images.reorder');

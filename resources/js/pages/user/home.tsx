@@ -40,9 +40,9 @@ export default function Home({ blocks }: HomeProps) {
                         <Footprint blocks={blocks} />
                     </div>
 
-                    <Choice blocks={blocks}  />
+                    <Choice blocks={blocks} />
 
-                    <Brokers />
+                    <Brokers blocks={blocks} />
 
                     <Pricing />
 

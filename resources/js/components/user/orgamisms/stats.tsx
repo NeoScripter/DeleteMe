@@ -1,47 +1,31 @@
-import { v4 as uuidv4 } from 'uuid';
+import { BlockType, CmsBlock } from '@/lib/types/cmsBlock';
+import { pbk } from '@/lib/utils/pick-block';
+import { range } from '@/lib/utils/range';
 
-export default function Stats() {
-    return <div className="mb-10 sm:mb-21 xl:mb-14 grid gap-7 sm:grid-cols-3 sm:gap-10 place-content-center">
-        {stats.map(stat => (
-            <StatCard key={stat.id} title={stat.title} content={stat.content} />
-        ))}
-    </div>;
-}
-
-type StatCardProps = {
-    title: string;
-    content: string;
+type StatsProps = {
+    blocks: BlockType;
 };
 
-function StatCard({ title, content }: StatCardProps) {
+export default function Stats({ blocks }: StatsProps) {
     return (
-        <div className='max-w-82.75 xl:max-w-77.75'>
-            <p className='font-bold text-4xl mb-3 sm:mb-5 sm:text-5xl'>{title}</p>
-            <p>{content}</p>
+        <div className="mb-10 grid place-content-center gap-7 sm:mb-21 sm:grid-cols-3 sm:gap-10 xl:mb-14">
+
+            {range(1, 3).map((digit) => (
+                <StatCard key={`stats-card${digit}`} block={pbk(blocks, `stats_card${digit}`)} />
+            ))}
         </div>
     );
 }
 
-type StatCardType = {
-    id: string;
-    title: string;
-    content: string;
+type StatCardProps = {
+    block: CmsBlock
 };
 
-const stats: StatCardType[] = [
-    {
-        id: uuidv4(),
-        title: '100M+',
-        content: 'успешно удалённых нашими экспертами персональных данных',
-    },
-    {
-        id: uuidv4(),
-        title: '54+',
-        content: 'года усилий сэкономили для клиентов (при личном удалении данных, это более 20 000 часов)',
-    },
-    {
-        id: uuidv4(),
-        title: '2,389+',
-        content: 'cреднее количество раскрытых персональных данных, обнаруженных у брокеров данных за двухлетнюю подписку на наш сервис',
-    },
-];
+function StatCard({ block }: StatCardProps) {
+    return (
+        <div className="max-w-82.75 xl:max-w-77.75">
+            <p className="mb-3 text-4xl font-bold sm:mb-5 sm:text-5xl">{block.text}</p>
+            <p>{block.content}</p>
+        </div>
+    );
+}

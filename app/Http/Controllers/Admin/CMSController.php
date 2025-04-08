@@ -148,4 +148,35 @@ class CMSController extends Controller
 
         return back();
     }
+
+    public function destroy(Request $request)
+    {
+        $validated = $request->validate([
+            'page_slug' => 'required|string|max:255',
+            'block_slug' => 'required|string|max:255',
+        ]);
+
+        $block = CmsBlock::where('page_slug', $validated['page_slug'])
+            ->where('block_slug', $validated['block_slug'])
+            ->first();
+
+        if (!$block) {
+            return redirect()->back()->withErrors(['block' => 'Блок не найден.']);
+        }
+
+        if ($block->image && Storage::disk('public')->exists($block->image)) {
+            Storage::disk('public')->delete($block->image);
+        }
+
+        foreach ($block->images as $image) {
+            if (Storage::disk('public')->exists($image->path)) {
+                Storage::disk('public')->delete($image->path);
+            }
+            $image->delete();
+        }
+
+        $block->delete();
+
+        return redirect()->back()->with('message', 'Блок успешно удалён.');
+    }
 }

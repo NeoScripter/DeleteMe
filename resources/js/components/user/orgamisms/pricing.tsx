@@ -22,7 +22,6 @@ export default function Pricing() {
                     </div>
                     <div className="flex items-center gap-1.5 rounded-full bg-white p-0.5 sm:basis-3/5 sm:gap-0">
                         <PlanBtn value={PLANS.SINGLE} isActive={plan === PLANS.SINGLE} onClick={() => setPlan(PLANS.SINGLE)} />
-                        <PlanBtn value={PLANS.COUPLE} isActive={plan === PLANS.COUPLE} onClick={() => setPlan(PLANS.COUPLE)} />
                         <PlanBtn value={PLANS.FAMILY} isActive={plan === PLANS.FAMILY} onClick={() => setPlan(PLANS.FAMILY)} />
                     </div>
                 </header>

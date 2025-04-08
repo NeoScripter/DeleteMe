@@ -1,5 +1,9 @@
 import ReviewCard from '@/assets/images/reviews/review-card.webp';
 import ReviewTop from '@/assets/images/reviews/review-top.webp';
+import { useBlockRange } from '@/lib/hooks/use-block-range';
+import { BlockType, CmsBlock } from '@/lib/types/cmsBlock';
+import { cbk, pbk } from '@/lib/utils/pick-block';
+import { range } from '@/lib/utils/range';
 import { ArrowDownIcon } from '@heroicons/react/24/solid';
 import { useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -80,31 +84,36 @@ const reducer = (state: CarouselState, action: Action): CarouselState => {
     }
 };
 
-export default function Reviews() {
-    return (
-        <section id='reviews' className="mb-10 sm:mb-25 xl:mb-20">
-            <header className="mb-7 sm:mb-15 xl:mb-18 xl:flex xl:items-center xl:justify-between">
-                <h1 className="text-[2rem]">
-                    Отзывы клиентов <br /> DeleteMe
-                </h1>
+type ReviewsProps = {
+    blocks: BlockType;
+};
 
-                <div className="hidden xl:flex items-center gap-2">
+export default function Reviews({ blocks }: ReviewsProps) {
+    return (
+        <section id="reviews" className="mb-10 sm:mb-25 xl:mb-20">
+            <header className="mb-7 sm:mb-15 xl:mb-18 xl:flex xl:items-center xl:justify-between">
+                {cbk(blocks, 'reviews_title', 'text') && <h1 className="max-w-72 text-[2rem]">{blocks.reviews_title.text}</h1>}
+
+                <div className="hidden items-center gap-2 xl:flex">
                     <div>Отлично</div>
-                    <img src={ReviewTop} alt="Фото общего рейтинга" className='shrink-0 w-40' />
+                    <img src={ReviewTop} alt="Фото общего рейтинга" className="w-40 shrink-0" />
                     <strong>4,78</strong>
                 </div>
             </header>
 
-            <ReviewCarousel />
+            <ReviewCarousel blocks={blocks} />
         </section>
     );
 }
 
 type ReviewCarouselProps = {
     arrows?: boolean;
+    blocks: BlockType;
 };
 
-function ReviewCarousel({ arrows = false }: ReviewCarouselProps) {
+function ReviewCarousel({ arrows = false, blocks }: ReviewCarouselProps) {
+    const { value: reviewCount } = useBlockRange('review_card', blocks);
+
     const [state, dispatch] = useReducer(reducer, {
         currentSlide: 0,
         touchStartX: null,
@@ -129,8 +138,8 @@ function ReviewCarousel({ arrows = false }: ReviewCarouselProps) {
                     transform: `translateX(-${getOffset() * state.currentSlide}px)`,
                 }}
             >
-                {reviews.map((review: ReviewType) => (
-                    <Review key={review.id} review={review} />
+                {range(1, reviewCount).map((digit) => (
+                    <Review key={`review-${digit}`} block={pbk(blocks, `review_card${digit}`)} />
                 ))}
             </div>
 
@@ -165,18 +174,22 @@ function SliderBtn({ children, onClick }: SliderBtnProps) {
 }
 
 type ReviewProps = {
-    review: ReviewType;
+    block: CmsBlock;
 };
 
-function Review({ review }: ReviewProps) {
+function Review({ block }: ReviewProps) {
+    const title = block?.contents?.[0] ?? '';
+    const content = block?.contents?.[1] ?? '';
+    const author = block?.contents?.[2] ?? '';
+
     return (
         <div className="w-[294px] shrink-0 rounded-2xl border border-white/10 bg-white/7 p-4 px-5 py-9 sm:w-[374px] sm:px-7.5 xl:w-[230px]">
             <div className="mb-6 w-23">
                 <img src={ReviewCard} alt="Пять звезд рейтинга" />
             </div>
-            <div className="mb-5 text-2xl font-bold">{review.title}</div>
-            <div className="mb-5 sm:mb-6.5">{review.content.length > 100 ? review.content.slice(0, 100) + '...' : review.content}</div>
-            <div className="font-bold">{review.author}</div>
+            <div className="mb-5 text-2xl font-bold">{title}</div>
+            <div className="mb-5 sm:mb-6.5">{content.length > 100 ? content.slice(0, 100) + '...' : content}</div>
+            <div className="font-bold">{author}</div>
         </div>
     );
 }

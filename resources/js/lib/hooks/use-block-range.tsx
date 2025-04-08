@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { BlockType } from '../types/cmsBlock';
 
-export function useBlockRangeCount(prefix: string, blocks: BlockType) {
+export function useBlockRange(prefix: string, blocks: BlockType) {
     const defaultCount = useMemo(() => {
         const regex = new RegExp(`^${prefix}(\\d+)$`);
         const matchingKeys = Object.keys(blocks).filter((key) => regex.test(key));

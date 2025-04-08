@@ -39,7 +39,7 @@ export default function RequestForm() {
                     processing && 'opacity-60',
                 )}
             >
-                Оформить подписку
+                Оставить заявку
             </Button>
         </form>
     );

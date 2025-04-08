@@ -1,7 +1,11 @@
 import AddItemBtn from '@/components/admin/elements/add-item-btn';
 import RemoveItemBtn from '@/components/admin/elements/remove-item-btn';
 import AccordionWrapper from '@/components/admin/forms/accordion-wrapper';
-import Gallery from '@/components/admin/pages/home/gallery';
+import BrokersData from '@/components/admin/pages/home/brokers-data';
+import ChoiceSection from '@/components/admin/pages/home/choice/choice';
+import ChoiceCard from '@/components/admin/pages/home/choice/choice-card';
+import ChoiceTitle from '@/components/admin/pages/home/choice/choice-title';
+import FootPrint from '@/components/admin/pages/home/footprint';
 import Groceries from '@/components/admin/pages/home/groceries';
 import HeroBottom from '@/components/admin/pages/home/hero/hero-bottom';
 import HeroDektopImage from '@/components/admin/pages/home/hero/hero-desktop-img';
@@ -12,11 +16,12 @@ import HeroTitle from '@/components/admin/pages/home/hero/hero-title';
 import Marquee from '@/components/admin/pages/home/marquee';
 import PerksCard from '@/components/admin/pages/home/perks/perks-card';
 import PerksTitle from '@/components/admin/pages/home/perks/perks-title';
-import Question from '@/components/admin/pages/home/question';
 import ReviewCard from '@/components/admin/pages/home/reviews/review-card';
 import ReviewTitle from '@/components/admin/pages/home/reviews/review-title';
+import StatsCard from '@/components/admin/pages/home/stats/stats-card';
+import StatsTitle from '@/components/admin/pages/home/stats/stats-title';
 import AppLayout from '@/layouts/app-layout';
-import { useBlockRangeCount } from '@/lib/hooks/use-block-range-count';
+import { useBlockRange } from '@/lib/hooks/use-block-range';
 import { type BreadcrumbItem } from '@/lib/types';
 import { BlockType } from '@/lib/types/cmsBlock';
 import { pbk } from '@/lib/utils/pick-block';
@@ -35,7 +40,7 @@ type PageProps = {
 };
 
 export default function Home({ blocks }: PageProps) {
-    const { value: reviewCount, increment: addReview, decrement: removeReview } = useBlockRangeCount('review', blocks);
+    const { value: reviewCount, increment: addReview, decrement: removeReview } = useBlockRange('review_card', blocks);
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -85,11 +90,11 @@ export default function Home({ blocks }: PageProps) {
                             <ReviewTitle label="Заголовок" block={pbk(blocks, 'reviews_title')} slug="reviews_title" />
 
                             {range(1, reviewCount).map((digit) => (
-                                <div key={`review-card${digit}`} className="flex items-start gap-2">
+                                <div key={`review-card${digit}`} className="flex items-start gap-4">
                                     <div className="flex-1">
                                         <ReviewCard label={`Отзыв ${digit}`} block={pbk(blocks, `review_card${digit}`)} slug={`review_card${digit}`} />
                                     </div>
-                                    <RemoveItemBtn onClick={removeReview} className="mt-2" />
+                                    <RemoveItemBtn onClick={removeReview} className="mt-4" data={{ page_slug: "home", block_slug: `review_card${digit}` }} />
                                 </div>
                             ))}
                             <AddItemBtn className="mt-2 mb-4" content="Добавить отзыв" onClick={addReview} />
@@ -98,17 +103,53 @@ export default function Home({ blocks }: PageProps) {
                 </div>
                 <div>
                     <div>
-                        <h2 className="p-2 text-lg font-bold">Цвет карточек на странице</h2>
+                        <h2 className="p-2 text-lg font-bold">Статистика</h2>
                         <AccordionWrapper>
-                            <Question label="Вопрос" block={pbk(blocks, 'question')} slug="question" />
+                            {range(1, 3).map((digit) => (
+                                <StatsCard
+                                    key={`stats-card${digit}`}
+                                    label={`Пункт ${digit}`}
+                                    block={pbk(blocks, `stats_card${digit}`)}
+                                    slug={`stats_card${digit}`}
+                                />
+                            ))}
+
+                            <StatsTitle label="Текст справа от фото с брокерами" block={pbk(blocks, 'stats_title')} slug="stats_title" />
                         </AccordionWrapper>
                     </div>
                 </div>
                 <div>
                     <div>
-                        <h2 className="p-2 text-lg font-bold">Галерея фотографий</h2>
+                        <h2 className="p-2 text-lg font-bold">Секция с типами удаляемых данных</h2>
                         <AccordionWrapper>
-                            <Gallery label="Фотографии" block={pbk(blocks, 'gallery')} slug="gallery" />
+                            <FootPrint label="Фото и заголовок" block={pbk(blocks, 'footprint')} slug="footprint" />
+                        </AccordionWrapper>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h2 className="p-2 text-lg font-bold">Почему мы?</h2>
+                        <AccordionWrapper>
+                            <ChoiceSection label="Заголовок и подзаголовок справа от фото с поиском в Яндексе" block={pbk(blocks, 'choice')} slug="choice" />
+
+                            <ChoiceTitle label="Заголовок" block={pbk(blocks, 'choice_title')} slug="choice_title" />
+
+                            {range(1, 4).map((digit) => (
+                                <ChoiceCard
+                                    key={`choice_card${digit}`}
+                                    label={`Карточка ${digit}`}
+                                    block={pbk(blocks, `choice_card${digit}`)}
+                                    slug={`choice_card${digit}`}
+                                />
+                            ))}
+                        </AccordionWrapper>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h2 className="p-2 text-lg font-bold">Секция с брокерами данных</h2>
+                        <AccordionWrapper>
+                            <BrokersData label="Заголовок и логотипы" block={pbk(blocks, 'brokers')} slug="brokers" />
                         </AccordionWrapper>
                     </div>
                 </div>
