@@ -45,7 +45,7 @@ export default function Home({ blocks, shared }: HomeProps) {
 
                     <Brokers blocks={blocks} />
 
-                    <Pricing />
+                    <Pricing shared={shared} />
 
                     <Webform blocks={blocks} />
 
