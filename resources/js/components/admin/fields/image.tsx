@@ -22,6 +22,7 @@ const ImageField: React.FC<ImageFieldProps> = ({ label = 'Фото', image, onCh
 
     useEffect(() => {
         if (image instanceof File) {
+            console.log('is file')
             if (image.size > maxSize) {
                 toast.error(`Файл "${image.name}" превышает 1MB`);
                 onChange(null);
@@ -36,9 +37,8 @@ const ImageField: React.FC<ImageFieldProps> = ({ label = 'Фото', image, onCh
         }
 
         if (typeof image === 'string' && image.length > 0) {
+            onChange(null);
             setPreviewUrl(`/storage/${image}`);
-        } else {
-            setPreviewUrl(null);
         }
     }, [image]);
 
