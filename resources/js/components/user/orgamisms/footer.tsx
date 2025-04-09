@@ -1,29 +1,47 @@
-import FooterSocial from "../atoms/footer-social";
-import FacebookSvg from "@/assets/svgs/facebook.svg?raw";
-import XSvg from "@/assets/svgs/x.svg?raw";
-import LinkendinSvg from "@/assets/svgs/linkendin.svg?raw";
+import { BlockType } from '@/lib/types/cmsBlock';
+import { cbk, pbk } from '@/lib/utils/pick-block';
+import { range } from '@/lib/utils/range';
+import { Link } from '@inertiajs/react';
 
-
-export default function Footer() {
+type FooterProps = {
+    blocks: BlockType;
+};
+export default function Footer({ blocks }: FooterProps) {
     return (
-        <footer className="bg-primary-bg px-3 pt-7.5 pb-12 text-white sm:px-10 sm:pb-5.5 xl:px-25 xl:pt-20 xl:pb-14 sm:flex sm:justify-between xl:block">
-            <div className="mb-6 sm:mb-0 xl:flex xl:justify-between xl:items-center xl:mb-7">
-                <div className="mb-5 text-xl font-bold xl:text-4xl xl:mb-0">Delete.name</div>
+        <footer className="bg-primary-bg flex flex-col gap-4 px-6 py-7.5 text-white md:flex-row md:items-center md:justify-between md:px-12 xl:px-25 xl:py-20">
+            {cbk(blocks, 'footer_title', 'text') && <div className="text-3xl font-bold xl:text-4xl">{blocks.footer_title.text}</div>}
 
-                <div className="flex items-center gap-3.5">
-                    <FooterSocial html={FacebookSvg} link="/" />
-                    <FooterSocial html={XSvg} link="/" />
-                    <FooterSocial html={LinkendinSvg} link="/" />
-                </div>
+            <div className="flex flex-col items-start gap-1 text-sm font-bold sm:text-base md:items-center md:gap-2 lg:text-lg xl:text-xl">
+                {cbk(blocks, 'footer_title', 'texts') && blocks.footer_title.texts?.map((text, index) => (
+                    <p key={`text-${index}`}>{text}</p>)
+                )}
             </div>
 
-            <nav className="sm:mt-auto sm:mb-2 xl:mb-0">
-                <ul className="opacity-70 items-end flex flex-col gap-2 text-sm sm:flex-row sm:justify-end sm:gap-10 xl:flex-col xl:gap-4">
+            <nav className="mt-2 md:mt-0">
+                <ul className="flex flex-col items-end gap-3 text-xs opacity-70 sm:text-sm md:items-start">
                     <li>
-                        <a href="" className="underline underline-offset-4 hover:opacity-50 transition-opacity duration-200 ease-in-out">Политика конфиденциальности</a>
+                        <Link
+                            href={route('policy')}
+                            className="underline underline-offset-4 transition-opacity duration-200 ease-in-out hover:opacity-50"
+                        >
+                            Политика конфиденциальности
+                        </Link>
                     </li>
                     <li>
-                        <a href="" className="underline underline-offset-4 hover:opacity-50 transition-opacity duration-200 ease-in-out">Правила сервиса</a>
+                        <Link
+                            href={route('rules')}
+                            className="underline underline-offset-4 transition-opacity duration-200 ease-in-out hover:opacity-50"
+                        >
+                            Правила сервиса
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href={route('agreement')}
+                            className="underline underline-offset-4 transition-opacity duration-200 ease-in-out hover:opacity-50"
+                        >
+                            Пользовательское соглашение
+                        </Link>
                     </li>
                 </ul>
             </nav>

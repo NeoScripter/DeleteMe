@@ -9,9 +9,10 @@ import { reachGoal } from '@/lib/utils/reach-goal';
 
 type HeroProps = {
     blocks: BlockType;
+    shared: BlockType;
 };
 
-export default function Hero({ blocks }: HeroProps) {
+export default function Hero({ blocks, shared }: HeroProps) {
     const isTablet = useScreenResize(540);
     const isDesktop = useScreenResize(900);
 
@@ -25,7 +26,7 @@ export default function Hero({ blocks }: HeroProps) {
             className={cn('bg-cover bg-no-repeat px-8 pt-10 pb-8 text-white md:px-16 xl:px-30 xl:pt-13.25', isTablet ? 'bg-right' : 'bg-center')}
         >
             <header className="mb-26 text-xl font-bold md:mb-18 xl:mb-21 xl:flex xl:items-center xl:gap-8">
-                <div>Delete.name</div>
+                {cbk(shared, 'header_title', 'text') && <div>{shared.header_title.text}</div>}
 
                 <HeroNav />
             </header>

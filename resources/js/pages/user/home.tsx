@@ -17,14 +17,15 @@ import { BlockType } from '@/lib/types/cmsBlock';
 
 type HomeProps = {
     blocks: BlockType;
+    shared: BlockType;
 };
 
-export default function Home({ blocks }: HomeProps) {
+export default function Home({ blocks, shared }: HomeProps) {
     return (
-        <UserLayout title="Home">
+        <UserLayout blocks={shared} title="Главная">
             <PopupProvider>
                 <main>
-                    <Hero blocks={blocks} />
+                    <Hero blocks={blocks} shared={shared} />
 
                     <Marquee blocks={blocks} />
 

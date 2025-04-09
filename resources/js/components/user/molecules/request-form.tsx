@@ -31,7 +31,7 @@ export default function RequestForm() {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6 text-sm">
-            <TextField setter={setData} fieldName="name" value={data.name} error={errors.name} shouldFocus={true} placeholder="Имя" required={true} />
+            <TextField setter={setData} fieldName="name" value={data.name} error={errors.name} placeholder="Имя" required={true} />
 
             <TextField setter={setData} fieldName="phone" type="tel" value={data.phone} error={errors.phone} placeholder="Телефон" />
 

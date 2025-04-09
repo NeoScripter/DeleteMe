@@ -22,7 +22,7 @@ export default function Perks({ blocks }: PerksProps) {
             <div className="mb-15 flex flex-col items-center gap-5 text-center sm:mb-35 sm:gap-3 xl:sticky xl:top-40 xl:mb-0 xl:items-start xl:text-left">
                 {cbk(blocks, 'perks_title', 'text') && <h2 className="text-[2rem] font-bold xl:w-90 xl:text-4xl">{blocks.perks_title.text}</h2>}
                 {cbk(blocks, 'perks_title', 'content') && <p className="text-lg sm:mb-4 xl:w-90">{blocks.perks_title.content}</p>}
-                <PrimaryBtn  onClick={() => reachGoal('nachat-ydalenie')} className="flex items-center gap-2 xl:ml-auto">
+                <PrimaryBtn onClick={() => reachGoal('nachat-ydalenie')} className="flex items-center gap-2 xl:ml-auto">
                     Начать удаление
                     <ArrowLongRightIcon className="size-6" />
                 </PrimaryBtn>

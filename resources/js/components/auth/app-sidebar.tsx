@@ -3,7 +3,7 @@ import { NavUser } from '@/components/auth/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/lib/types';
 import { Link } from '@inertiajs/react';
-import { LayoutGrid, HouseIcon } from 'lucide-react';
+import { LayoutGrid, HouseIcon, FileStack, BookLock, Scale, ScrollText } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -16,6 +16,26 @@ const mainNavItems: NavItem[] = [
         title: 'Главная страница',
         href: '/admin/home',
         icon: HouseIcon,
+    },
+    {
+        title: 'Общие элементы',
+        href: '/admin/shared',
+        icon: FileStack,
+    },
+    {
+        title: 'Политика конфиденциальности',
+        href: '/admin/policy',
+        icon: BookLock,
+    },
+    {
+        title: 'Правила сервиса',
+        href: '/admin/rules',
+        icon: Scale,
+    },
+    {
+        title: 'Пользовательское соглашение',
+        href: '/admin/agreement',
+        icon: ScrollText,
     },
 ];
 

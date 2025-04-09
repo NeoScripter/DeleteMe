@@ -9,8 +9,30 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('user/home', [
         'blocks' => CmsBlockHelper::getByPage('home'),
+        'shared' => CmsBlockHelper::getByPage('shared'),
     ]);
 })->name('home');
+
+Route::get('/policy', function () {
+    return Inertia::render('user/policy', [
+        'blocks' => CmsBlockHelper::getByPage('policy'),
+        'shared' => CmsBlockHelper::getByPage('shared'),
+    ]);
+})->name('policy');
+
+Route::get('/rules', function () {
+    return Inertia::render('user/rules', [
+        'blocks' => CmsBlockHelper::getByPage('rules'),
+        'shared' => CmsBlockHelper::getByPage('shared'),
+    ]);
+})->name('rules');
+
+Route::get('/agreement', function () {
+    return Inertia::render('user/agreement', [
+        'blocks' => CmsBlockHelper::getByPage('agreement'),
+        'shared' => CmsBlockHelper::getByPage('shared'),
+    ]);
+})->name('agreement');
 
 Route::post('/mail', [EmailController::class, 'sendEmail'])->name('mail');
 
@@ -25,6 +47,30 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
             'blocks' => CmsBlockHelper::getByPage('home'),
         ]);
     })->name('home.edit');
+
+    Route::get('/admin/shared', function () {
+        return Inertia::render('admin/shared', [
+            'blocks' => CmsBlockHelper::getByPage('shared'),
+        ]);
+    })->name('shared.edit');
+
+    Route::get('/admin/policy', function () {
+        return Inertia::render('admin/policy', [
+            'blocks' => CmsBlockHelper::getByPage('policy'),
+        ]);
+    })->name('policy.edit');
+
+    Route::get('/admin/rules', function () {
+        return Inertia::render('admin/rules', [
+            'blocks' => CmsBlockHelper::getByPage('rules'),
+        ]);
+    })->name('rules.edit');
+
+    Route::get('/admin/agreement', function () {
+        return Inertia::render('admin/agreement', [
+            'blocks' => CmsBlockHelper::getByPage('agreement'),
+        ]);
+    })->name('agreement.edit');
 
 
     Route::post('/admin/update', [CMSController::class, 'update'])->name('admin.update');

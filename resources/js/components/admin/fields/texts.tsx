@@ -36,10 +36,10 @@ export default function TextsField({ label, texts, onChange, errors }: TextsFiel
             <Collapsible className="space-y-2">
                 <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between space-x-4 px-4">
                     <h4 className="text-sm font-semibold">{label}</h4>
-                    <Button type="button" variant="ghost" size="sm" className="cursor-pointer">
+                    <div className="my-2">
                         <ChevronsUpDown className="h-4 w-4" />
                         <span className="sr-only">Toggle</span>
-                    </Button>
+                    </div>
                 </CollapsibleTrigger>
 
                 <CollapsibleContent className="space-y-2 pb-2">
