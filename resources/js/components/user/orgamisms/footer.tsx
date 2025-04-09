@@ -1,6 +1,5 @@
 import { BlockType } from '@/lib/types/cmsBlock';
-import { cbk, pbk } from '@/lib/utils/pick-block';
-import { range } from '@/lib/utils/range';
+import { cbk } from '@/lib/utils/pick-block';
 import { Link } from '@inertiajs/react';
 
 type FooterProps = {
@@ -21,6 +20,7 @@ export default function Footer({ blocks }: FooterProps) {
                 <ul className="flex flex-col items-end gap-3 text-xs opacity-70 sm:text-sm md:items-start">
                     <li>
                         <Link
+                            prefetch
                             href={route('policy')}
                             className="underline underline-offset-4 transition-opacity duration-200 ease-in-out hover:opacity-50"
                         >
@@ -29,6 +29,7 @@ export default function Footer({ blocks }: FooterProps) {
                     </li>
                     <li>
                         <Link
+                            prefetch
                             href={route('rules')}
                             className="underline underline-offset-4 transition-opacity duration-200 ease-in-out hover:opacity-50"
                         >
@@ -37,6 +38,7 @@ export default function Footer({ blocks }: FooterProps) {
                     </li>
                     <li>
                         <Link
+                            prefetch
                             href={route('agreement')}
                             className="underline underline-offset-4 transition-opacity duration-200 ease-in-out hover:opacity-50"
                         >
