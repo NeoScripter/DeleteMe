@@ -1,1 +1,0 @@
-import{j as e,$ as r}from"./app-0iP0vhez.js";function s({title:t}){return e.jsx("header",{className:"bg-primary-bg px-8 py-10 sm:px-16 xl:px-30 xl:py-16",children:e.jsx(r,{prefetch:!0,href:route("home"),className:"text-3xl font-bold text-white xl:text-4xl",children:t})})}export{s as D};

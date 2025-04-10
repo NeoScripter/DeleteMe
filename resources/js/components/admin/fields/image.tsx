@@ -1,12 +1,12 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import React, { useEffect, useId, useState } from 'react';
+import React, { useId, useState } from 'react';
 import { toast } from 'sonner';
 import DeleteImgLink from '../elements/delete-img-link';
 
 type ImageFieldProps = {
     label?: string;
-    image: File | string | null;
+    image: string | null;
     onChange: (file: File | null) => void;
     error?: string;
     routeName: string;
@@ -17,30 +17,24 @@ type ImageFieldProps = {
 const maxSize = 1024 * 1024; // 1MB
 
 const ImageField: React.FC<ImageFieldProps> = ({ label = 'Фото', image, onChange, error, routeName, pageSlug, blockSlug }) => {
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(image ? `/storage/${image}` : null);
     const id = useId();
 
-    useEffect(() => {
-        if (image instanceof File) {
-            console.log('is file')
-            if (image.size > maxSize) {
-                toast.error(`Файл "${image.name}" превышает 1MB`);
-                onChange(null);
-                return;
-            }
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const uploadedImage = e.target.files?.[0];
 
-            const url = URL.createObjectURL(image);
+        if (uploadedImage == null) return;
 
-            setPreviewUrl(url);
-
-            return () => URL.revokeObjectURL(url);
-        }
-
-        if (typeof image === 'string' && image.length > 0) {
+        if (uploadedImage.size > maxSize) {
+            toast.error(`Файл "${uploadedImage.name}" превышает 1MB`);
             onChange(null);
-            setPreviewUrl(`/storage/${image}`);
+            return;
         }
-    }, [image]);
+
+        const url = URL.createObjectURL(uploadedImage);
+        setPreviewUrl(url);
+        onChange(uploadedImage);
+    }
 
     function handleDeleteImage() {
         setPreviewUrl(null);
@@ -55,7 +49,7 @@ const ImageField: React.FC<ImageFieldProps> = ({ label = 'Фото', image, onCh
                 id={id}
                 type="file"
                 accept="image/*"
-                onChange={(e) => onChange(e.target.files?.[0] || null)}
+                onChange={handleChange}
                 className="block cursor-pointer pt-2"
             />
 

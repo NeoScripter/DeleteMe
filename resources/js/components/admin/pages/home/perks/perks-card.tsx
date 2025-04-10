@@ -5,7 +5,7 @@ import AccordionForm from '@/components/admin/forms/accordion-form';
 import { useForm } from '@inertiajs/react';
 
 export type PerksCardProps = {
-    block?: { text: string | null; content: string | null; image: File | string | null };
+    block?: { text: string | null; content: string | null; image: string | null };
     slug: string;
     label: string;
 };
@@ -14,7 +14,7 @@ export default function PerksCard({ block, slug, label }: PerksCardProps) {
     const { data, setData, post, processing, errors } = useForm({
         text: block?.text || '',
         content: block?.content || '',
-        image: block?.image || null,
+        image: null,
         page_slug: 'home',
         block_slug: slug,
     });
@@ -45,8 +45,8 @@ export default function PerksCard({ block, slug, label }: PerksCardProps) {
             <ImageField
                 blockSlug={slug}
                 pageSlug="home"
-                image={data.image}
-                onChange={(file) => setData('image', file)}
+                image={block?.image || null}
+                onChange={(file) => setData('image', file as unknown as null)}
                 error={errors.image}
                 routeName={route('admin.image.destroy', slug)}
             />

@@ -3,14 +3,14 @@ import AccordionForm from '@/components/admin/forms/accordion-form';
 import { useForm } from '@inertiajs/react';
 
 export type HeroDektopImageProps = {
-    block?: { image: File | string | null };
+    block?: { image: string | null };
     slug: string;
     label: string;
 };
 
 export default function HeroDektopImage({ block, slug, label }: HeroDektopImageProps) {
-    const { data, setData, post, processing, errors } = useForm({
-        image: block?.image || null,
+    const { setData, post, processing, errors } = useForm({
+        image: null,
         page_slug: 'home',
         block_slug: slug,
     });
@@ -27,8 +27,8 @@ export default function HeroDektopImage({ block, slug, label }: HeroDektopImageP
             <ImageField
                 blockSlug={slug}
                 pageSlug="home"
-                image={data.image}
-                onChange={(file) => setData('image', file)}
+                image={block?.image || null}
+                onChange={(file) => setData('image', file as unknown as null)}
                 error={errors.image}
                 routeName={route('admin.image.destroy', slug)}
             />
