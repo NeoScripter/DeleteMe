@@ -19,12 +19,11 @@ export default function RequestForm() {
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
-        reachGoal('Ostavit-zayavky');
-
         post(route('mail'), {
             preserveScroll: true,
             onSuccess: () => {
                 notify();
+                reachGoal('Ostavit-zayavky');
             },
         });
     }

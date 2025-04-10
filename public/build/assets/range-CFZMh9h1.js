@@ -1,1 +1,0 @@
-import{r as u}from"./app-CSqGpIcX.js";function l(t,n){const o=u.useMemo(()=>{const e=new RegExp(`^${t}(\\d+)$`),s=Object.keys(n).filter(a=>e.test(a));return s.length>0?s.length:1},[t,n]),[r,c]=u.useState(o);return{value:r,increment:()=>c(e=>e+1),decrement:()=>c(e=>e>1?e-1:1)}}function f(t,n){return Array.from({length:n-t+1},(o,r)=>t+r)}export{f as r,l as u};
